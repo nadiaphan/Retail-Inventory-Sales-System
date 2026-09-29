@@ -4,7 +4,28 @@
 This project will develop a retail inventory and sales management system that helps retail managers monitor sales, inventory levels, product demand, and replenishment activity across multiple stores.
 
 ## Data Source
-Retail Store Inventory Forecasting Dataset - Kaggle
+### Retail Store Inventory Forecasting Dataset
+
+**Source:** Kaggle  
+**Dataset Link:** https://www.kaggle.com/datasets/anirudhchauhan/retail-store-inventory-forecasting-dataset?
+
+This dataset contains retail sales and inventory information across multiple stores and products. The data includes:
+
+- Date
+- Store ID
+- Product ID
+- Product Category
+- Region
+- Inventory Level
+- Units Sold
+- Units Ordered
+- Demand Forecast
+- Price
+- Discount
+- Weather Condition
+- Holiday/Promotion
+- Competitor Pricing
+- Seasonality
 
 ## System Components
 - SQL relational database
