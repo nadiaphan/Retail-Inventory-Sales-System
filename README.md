@@ -40,3 +40,12 @@ This dataset contains retail sales and inventory information across multiple sto
 - Compare sales with demand forecasts
 - Analyze performance by store, product, category, and region
 - Examine the effects of discounts, promotions, and seasonality
+
+## Repository Guide
+
+- `docs/`: Project documentation, including the dataset data dictionary.
+- `sql/`: SQL files for the normalized database schema.
+- `.env.example`: Example environment configuration.
+- `Dockerfile` and `docker-compose.yml`: Docker configuration files.
+- `retail_inventory_setup.ipynb`: Retail inventory setup notebook.
+- `retail_store_inventory_cleaned.csv`: Cleaned retail inventory dataset.
