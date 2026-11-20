@@ -49,3 +49,46 @@ This dataset contains retail sales and inventory information across multiple sto
 - `Dockerfile` and `docker-compose.yml`: Docker configuration files.
 - `retail_inventory_setup.ipynb`: Retail inventory setup notebook.
 - `retail_store_inventory_cleaned.csv`: Cleaned retail inventory dataset.
+
+## Setup and data loading
+
+Run these commands from the repository root.
+
+1. Copy `.env.example` to `.env` and replace the example password with a real local password. Keep `.env` out of GitHub.
+
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+
+2. Set `DB_HOST=localhost` in `.env`, then start the PostgreSQL database.
+
+   ```powershell
+   docker compose up -d db
+   ```
+
+3. Install the PostgreSQL driver on the local machine.
+
+   ```powershell
+   pip install psycopg2-binary
+   ```
+
+4. Load the dataset.
+
+   ```powershell
+   python scripts/load_data.py
+   ```
+
+   To load a different CSV, pass its path as an argument or set the optional `CSV_PATH` environment variable.
+
+5. A successful load of the current dataset prints:
+
+   ```text
+   Load complete
+   CSV data rows: 73100
+   raw_retail_data rows: 73100
+   daily_inventory_sales rows: 73100
+   stores rows: 5
+   products rows: 20
+   Minimum date: 2022-01-01
+   Maximum date: 2024-01-01
+   ```
