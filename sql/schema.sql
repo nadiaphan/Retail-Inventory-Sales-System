@@ -20,14 +20,12 @@ CREATE TABLE raw_retail_data (
 
 -- Store information
 CREATE TABLE stores (
-    store_id TEXT PRIMARY KEY,
-    region TEXT
+    store_id TEXT PRIMARY KEY
 );
 
 -- Product information
 CREATE TABLE products (
-    product_id TEXT PRIMARY KEY,
-    category TEXT
+    product_id TEXT PRIMARY KEY
 );
 
 -- Daily inventory and sales data
@@ -35,6 +33,8 @@ CREATE TABLE daily_inventory_sales (
     date DATE,
     store_id TEXT,
     product_id TEXT,
+    category TEXT,
+    region TEXT,
     inventory_level INTEGER,
     units_sold INTEGER,
     units_ordered INTEGER,
