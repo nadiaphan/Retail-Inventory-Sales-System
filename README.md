@@ -92,3 +92,27 @@ Run these commands from the repository root.
    Minimum date: 2022-01-01
    Maximum date: 2024-01-01
    ```
+
+## Running the dashboard
+
+Run these commands from the repository root.
+
+1. Start the PostgreSQL database. The data must already be loaded with `python scripts/load_data.py`; otherwise, the dashboard will have no data to display.
+
+   ```powershell
+   docker compose up -d db
+   ```
+
+2. Install the dashboard packages for Python 3.12.
+
+   ```powershell
+   python -m pip install streamlit pandas psycopg2-binary
+   ```
+
+3. Set `DB_HOST=localhost` in `.env`, then start the dashboard.
+
+   ```powershell
+   python -m streamlit run app/dashboard.py
+   ```
+
+A working dashboard shows the five-question navigation and shared filters in the left sidebar. The Question 4 page shows performance breakdowns by store, region, category, and product, with charts and tables for total units sold and the revenue proxy.
