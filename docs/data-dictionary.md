@@ -13,8 +13,8 @@ Basically each row = one product, at one store, on one day. So I'm going to use 
 | Date | DATE | the day of the observation | one row per day, so this is part of the key |
 | Store ID | TEXT | store code | like S001. goes in **stores** table |
 | Product ID | TEXT | product code | like P0001. goes in **products** table |
-| Category | TEXT | what category the product is in | belongs to products, good for grouping (Toys, Groceries, etc) |
-| Region | TEXT | where the store is | North / South / East / West. belongs to stores |
+| Category | TEXT | what category the product is in | stored in **daily_inventory_sales** for each source row; good for grouping (Toys, Groceries, etc) |
+| Region | TEXT | region listed for the source row | North / South / East / West. stored in **daily_inventory_sales** |
 | Inventory Level | INTEGER | how many units are in stock at the store that day | use this to find low stock |
 | Units Sold | INTEGER | units sold that day | main sales number |
 | Units Ordered | INTEGER | units reordered that day | compare to Units Sold / forecast to see restocking |
@@ -26,15 +26,15 @@ Basically each row = one product, at one store, on one day. So I'm going to use 
 | Competitor Pricing | NUMERIC ($) | what competitors charge for a similar product | compare with our Price |
 | Seasonality | TEXT | season of that date | Spring / Summer / Autumn / Winter, comes from Date |
 
-## Schema ideas (still a draft!!)
+## Schema
 
-- **stores**: Store ID (PK), Region
-- **products**: Product ID (PK), Category
-- **daily_inventory_sales**: Date + Store ID + Product ID together as the composite key, then everything else (Inventory Level, Units Sold, Units Ordered, Demand Forecast, Price, Discount, Weather Condition, Holiday/Promotion, Competitor Pricing, Seasonality)
+- **stores**: Store ID (PK)
+- **products**: Product ID (PK)
+- **daily_inventory_sales**: Date + Store ID + Product ID together as the composite key, then Category, Region, Inventory Level, Units Sold, Units Ordered, Demand Forecast, Price, Discount, Weather Condition, Holiday/Promotion, Competitor Pricing, and Seasonality
+
+The source dataset gives the same store multiple regions and the same product multiple categories, so Region and Category cannot be stable store or product attributes and are kept in the fact table.
 
 Side note: Seasonality can be figured out from Date, so technically it's redundant. I think we keep it in the fact table anyway so queries are easier, or we could make a view for it instead. Need to ask the group which way we want to go.
 
 **TODO:**
-- double check that every Product ID only has ONE category (otherwise products table breaks)
-- same for Store ID and Region
 - decide on seasonality (keep or view)
